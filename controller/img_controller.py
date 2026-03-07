@@ -4,14 +4,14 @@ from service.img_service import quality_img
 
 img_bp = Blueprint("img", __name__, url_prefix="/img")
 
-# Modificar imagen
+# Mejorar imagen
 @img_bp.route('/', methods=["POST"])
 def post_img():
     try:
-        if not request.files['file']:
+        if "file" not in request.files:
             return jsonify({"error":"No se proporcionó ningún archivo"}), 400
         return jsonify({
-            "message":"Imagen modificada exitosamente",
+            "message":"Imagen mejorada exitosamente",
             "file": quality_img(request.files['file'])
             }), 200
     except ValueError as e:
