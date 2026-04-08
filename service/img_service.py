@@ -40,7 +40,7 @@ def quality_image(file, extension: str) -> bytes:
 
     # Exportar
     buffer = io.BytesIO()
-    fmt = "JPEG" if extension in ("jpg", "jpeg") else extension.upper()
+    fmt = "JPEG" if extension in ("jpg", "jpeg", "jfif") else extension.upper()
     img_pil.save(buffer, format=fmt, quality=95)
     buffer.seek(0)
     return buffer.getvalue()

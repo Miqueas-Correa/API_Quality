@@ -14,7 +14,7 @@ class Config:
 
     # Imágenes
     IMG_MAX_SIZE_MB = 20
-    IMG_ALLOWED_EXTENSIONS = {"jpg", "jpeg", "png", "webp", "bmp", "tiff"}
+    IMG_ALLOWED_EXTENSIONS = {"jpg", "jpeg", "png", "webp", "bmp", "tiff", "jfif"}
 
     # Otras configuraciones de Flask
     ENV = os.getenv("FLASK_ENV", "production")

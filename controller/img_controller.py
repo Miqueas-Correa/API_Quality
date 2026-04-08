@@ -20,9 +20,14 @@ def post_image():
 
         if file.filename == "" or file.filename is None:
             return jsonify({"error": "El archivo está vacío"}), 400
-
+        
         if not allowed_file(file.filename):
+            print("Extensión rechazada:", file.filename)  # 👈
+            print("Permitidas:", current_app.config.get("IMG_ALLOWED_EXTENSIONS"))  # 👈
             return jsonify({"error": "Formato no permitido"}), 415
+
+        # if not allowed_file(file.filename):
+        #     return jsonify({"error": "Formato no permitido"}), 415
 
         file.seek(0, 2)
         size_mb = file.tell() / (1024 * 1024)
@@ -34,11 +39,12 @@ def post_image():
         image_bytes = quality_image(file, extension)
         original_name = file.filename.rsplit(".", 1)[0]
 
+        out_ext = "jpg" if extension == "jfif" else extension
         return send_file(
             io.BytesIO(image_bytes),
-            mimetype=f"image/{extension}",
+            mimetype=f"image/jpeg" if extension == "jfif" else f"image/{extension}",
             as_attachment=True,
-            download_name=f"{original_name}_Quality.{extension}"
+            download_name=f"{original_name}_Quality.{out_ext}"
         ), 200
 
     except ValueError as e:
