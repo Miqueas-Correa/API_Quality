@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request, send_file, current_app
 import io
-from service.img_service import quality_image
+from src.service.img_service import quality_image
 
 img_bp = Blueprint("img", __name__, url_prefix="/img")
 

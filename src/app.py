@@ -1,8 +1,8 @@
 from flask import Flask, jsonify
-from config import Config
+from src.config import Config
 from flask_cors import CORS
-from controller.audio_controller import audio_bp
-from controller.img_controller import img_bp
+from src.controller.audio_controller import audio_bp
+from src.controller.img_controller import img_bp
 from werkzeug.exceptions import RequestEntityTooLarge
 import os
 

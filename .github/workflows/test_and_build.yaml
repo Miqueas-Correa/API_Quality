@@ -1,0 +1,66 @@
+# Nombre del workflow
+name: test and build
+# que vamos a hacer en este workflow, vamos a testear y construir nuestro proyecto
+
+# El on define los eventos que disparan el workflow
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+# Permissions define los permisos del workflow
+permissions:
+  contents: read
+  packages: write # necesario para publicar en GitHub Container Registry
+
+# Jobs define los trabajos
+jobs:
+  test_and_build:
+
+    # Sistema operativo donde corre
+    runs-on: ubuntu-latest
+
+    # Pasos del workflow
+    steps:
+
+      # 1. Checkout del código
+      - uses: actions/checkout@v4
+
+      # 2. Configuración de Python
+      - name: Set up Python 3.13
+        uses: actions/setup-python@v3
+        with:
+          python-version: "3.13"
+
+      # 3. Instalación de dependencias
+      - name: Install dependencies
+        run: pip install -r src/requirements.txt
+
+      # 4. Linting con Ruff
+      - name: Lint with Ruff
+        working-directory: src
+        run: |
+          pip install ruff
+          ruff check .
+
+      # 5. Pruebas con pytest
+      - name: Test with pytest
+        working-directory: src/test
+        run: |
+          pytest
+
+      # 6. Login al GitHub Container Registry
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v4
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      # 7. Build y push de la imagen Docker
+      - name: Build and push
+        uses: docker/build-push-action@v7
+        with:
+          push: true
+          tags: ghcr.io/miqueas-correa/${{ github.event.repository.name }}:latest

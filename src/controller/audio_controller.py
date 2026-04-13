@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request, send_file, current_app
 import io
-from service.audio_service import quality_audio
+from src.service.audio_service import quality_audio
 
 audio_bp = Blueprint("audio", __name__, url_prefix="/audio")
 
