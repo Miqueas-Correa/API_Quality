@@ -42,7 +42,7 @@ def post_image():
         out_ext = "jpg" if extension == "jfif" else extension
         return send_file(
             io.BytesIO(image_bytes),
-            mimetype=f"image/jpeg" if extension == "jfif" else f"image/{extension}",
+            mimetype="image/jpeg" if extension == "jfif" else f"image/{extension}",
             as_attachment=True,
             download_name=f"{original_name}_Quality.{out_ext}"
         ), 200

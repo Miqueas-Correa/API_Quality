@@ -54,7 +54,7 @@ def create_app(config_class=None):
 
     @app.errorhandler(RequestEntityTooLarge)
     def too_large(e):
-        return jsonify({"error": f"El archivo supera el límite permitido"}), 413
+        return jsonify({"error": "El archivo supera el límite permitido"}), 413
 
     try:
         app.register_blueprint(audio_bp)
