@@ -9,3 +9,6 @@ pytest==9.0.3
 pyaudio==0.2.14
 audioop-lts==0.2.2
 soundfile==0.13.1
+Pillow==12.1.1
+opencv-python-headless==4.13.0.92
+noisereduce==3.0.3
