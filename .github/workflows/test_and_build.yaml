@@ -33,6 +33,10 @@ jobs:
         with:
           python-version: "3.13"
 
+      # 2.5 Instalar dependencias del sistema
+      - name: Install system dependencies
+        run: sudo apt-get update && sudo apt-get install -y portaudio19-dev
+
       # 3. Instalación de dependencias
       - name: Install dependencies
         run: pip install -r requirements.txt
