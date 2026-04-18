@@ -67,4 +67,4 @@ jobs:
         uses: docker/build-push-action@v7
         with:
           push: true
-          tags: ghcr.io/miqueas-correa/${{ github.event.repository.name }}:latest
+          tags: ghcr.io/miqueas-correa/${{ github.event.repository.name | lower }}:latest
