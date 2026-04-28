@@ -5,7 +5,7 @@ from src.service.img_service import quality_image
 img_bp = Blueprint("img", __name__, url_prefix="/img")
 
 def allowed_file(filename: str) -> bool:
-    allowed = current_app.config.get("IMG_ALLOWED_EXTENSIONS", set())
+    allowed = current_app.config.get("IMG_ALLOWED_EXTENSIONS") or {"jpg", "jpeg", "png", "webp", "bmp", "tiff", "jfif"}
     return "." in filename and filename.rsplit(".", 1)[1].lower() in allowed
 
 @img_bp.route("", methods=["POST"])

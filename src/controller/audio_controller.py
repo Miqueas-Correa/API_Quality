@@ -5,7 +5,7 @@ from src.service.audio_service import quality_audio
 audio_bp = Blueprint("audio", __name__, url_prefix="/audio")
 
 def allowed_file(filename: str) -> bool:
-    allowed = current_app.config.get("AUDIO_ALLOWED_EXTENSIONS", set())
+    allowed = current_app.config.get("AUDIO_ALLOWED_EXTENSIONS") or {"mp3", "wav", "ogg", "flac", "aac", "m4a"}
     return "." in filename and filename.rsplit(".", 1)[1].lower() in allowed
 
 @audio_bp.route("", methods=["POST"])
