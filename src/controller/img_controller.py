@@ -20,14 +20,9 @@ def post_image():
 
         if file.filename == "" or file.filename is None:
             return jsonify({"error": "El archivo está vacío"}), 400
-        
-        if not allowed_file(file.filename):
-            print("Extensión rechazada:", file.filename)  # 👈
-            print("Permitidas:", current_app.config.get("IMG_ALLOWED_EXTENSIONS"))  # 👈
-            return jsonify({"error": "Formato no permitido"}), 415
 
-        # if not allowed_file(file.filename):
-        #     return jsonify({"error": "Formato no permitido"}), 415
+        if not allowed_file(file.filename):
+            return jsonify({"error": "Formato no permitido"}), 415
 
         file.seek(0, 2)
         size_mb = file.tell() / (1024 * 1024)
@@ -36,10 +31,14 @@ def post_image():
             return jsonify({"error": f"El archivo supera el límite de {max_size}MB"}), 413
 
         extension = file.filename.rsplit(".", 1)[1].lower()
+        print("Extension en controller:", extension)
         image_bytes = quality_image(file, extension)
         original_name = file.filename.rsplit(".", 1)[0]
+        print("Original name:", original_name)
 
         out_ext = "jpg" if extension == "jfif" else extension
+        print("Out ext:", out_ext)
+
         return send_file(
             io.BytesIO(image_bytes),
             mimetype="image/jpeg" if extension == "jfif" else f"image/{extension}",
