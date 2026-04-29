@@ -34,6 +34,8 @@ def create_app(config_class=None):
     if isinstance(origins, str):
         origins = [origins] if origins != "*" else ["*"]
 
+    print("CORS Origins:", origins)
+
     CORS(
         app,
         supports_credentials=app.config.get("CORS_SUPPORTS_CREDENTIALS", True),
