@@ -38,7 +38,7 @@ def create_app(config_class=None):
 
     CORS(
         app,
-        supports_credentials=app.config.get("CORS_SUPPORTS_CREDENTIALS", True),
+        supports_credentials=app.config.get("CORS_SUPPORTS_CREDENTIALS", False),
         resources={
             r"/*": {"origins": origins},
             r"uploads/*": {"origins": origins}
