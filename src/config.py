@@ -5,8 +5,8 @@ load_dotenv()
 
 class Config:
     #  CORS configuration
-    CORS_ORIGINS = os.getenv("CORS_ORIGINS", "http://localhost:5173").split(",")
-    CORS_SUPPORTS_CREDENTIALS = True
+    CORS_ORIGINS = os.environ.get("CORS_ORIGINS", "http://localhost:5173").split(",")
+    CORS_SUPPORTS_CREDENTIALS = False
 
     # Audio
     AUDIO_MAX_SIZE_MB = 20
