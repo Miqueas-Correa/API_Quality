@@ -12,8 +12,8 @@ def quality_image(file, extension: str) -> bytes:
     img = cv2.fastNlMeansDenoisingColored(img, None, h=6, hColor=6, templateWindowSize=7, searchWindowSize=21)
 
     # 2. Upscaling x2 con interpolación de alta calidad
-    height, width = img.shape[:2]
-    img = cv2.resize(img, (width * 2, height * 2), interpolation=cv2.INTER_LANCZOS4)
+    # height, width = img.shape[:2]
+    # img = cv2.resize(img, (width * 2, height * 2), interpolation=cv2.INTER_LANCZOS4)
 
     # 3. Sharpening (nitidez)
     kernel = np.array([
