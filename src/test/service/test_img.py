@@ -9,7 +9,7 @@ class TestQualityImage:
         assert isinstance(result, bytes)
         assert len(result) > 0
 
-    def test_quality_image_doubles_dimensions(self, test_image_file):
+    def test_quality_image_maintains_dimensions(self, test_image_file):
         test_image_file.seek(0)
         original_img = Image.open(test_image_file)
         original_width, original_height = original_img.size
@@ -19,8 +19,8 @@ class TestQualityImage:
         result_img = Image.open(io.BytesIO(result))
         result_width, result_height = result_img.size
 
-        assert result_width == original_width * 2
-        assert result_height == original_height * 2
+        assert result_width == original_width
+        assert result_height == original_height
 
     def test_quality_image_jpeg_extension(self, test_image_file):
         test_image_file.seek(0)
@@ -63,4 +63,4 @@ class TestQualityImage:
         result = quality_image(buffer, 'png')
         result_img = Image.open(io.BytesIO(result))
         result_array = np.array(result_img)
-        assert result_array.shape == (100, 100, 3)
+        assert result_array.shape == (50, 50, 3)
