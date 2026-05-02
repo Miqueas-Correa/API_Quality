@@ -1,5 +1,4 @@
 import io
-import numpy as np
 from pydub import AudioSegment
 from pydub.effects import normalize, compress_dynamic_range
 
