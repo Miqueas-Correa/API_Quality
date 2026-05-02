@@ -31,13 +31,13 @@ def post_image():
             return jsonify({"error": f"El archivo supera el límite de {max_size}MB"}), 413
 
         extension = file.filename.rsplit(".", 1)[1].lower()
-        print("Extension en controller:", extension)
+        # print("Extension en controller:", extension)
         image_bytes = quality_image(file, extension)
         original_name = file.filename.rsplit(".", 1)[0]
-        print("Original name:", original_name)
+        # print("Original name:", original_name)
 
         out_ext = "jpg" if extension == "jfif" else extension
-        print("Out ext:", out_ext)
+        # print("Out ext:", out_ext)
 
         return send_file(
             io.BytesIO(image_bytes),
