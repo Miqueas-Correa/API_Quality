@@ -9,11 +9,11 @@ class Config:
     CORS_SUPPORTS_CREDENTIALS = False
 
     # Audio
-    AUDIO_MAX_SIZE_MB = 20
+    AUDIO_MAX_SIZE_MB = 5
     AUDIO_ALLOWED_EXTENSIONS = {"mp3", "wav", "ogg", "flac", "aac", "m4a"}
 
     # Imágenes
-    IMG_MAX_SIZE_MB = 20
+    IMG_MAX_SIZE_MB = 5
     IMG_ALLOWED_EXTENSIONS = {"jpg", "jpeg", "png", "webp", "bmp", "tiff", "jfif"}
 
     # Otras configuraciones de Flask

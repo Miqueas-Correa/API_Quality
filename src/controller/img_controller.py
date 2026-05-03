@@ -11,7 +11,7 @@ def allowed_file(filename: str) -> bool:
 @img_bp.route("", methods=["POST"])
 def post_image():
     try:
-        max_size = current_app.config.get("IMG_MAX_SIZE_MB", 20)
+        max_size = current_app.config.get("IMG_MAX_SIZE_MB", 5)
 
         if "file" not in request.files:
             return jsonify({"error": "No se proporcionó ningún archivo"}), 400

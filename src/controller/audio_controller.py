@@ -11,7 +11,7 @@ def allowed_file(filename: str) -> bool:
 @audio_bp.route("", methods=["POST"])
 def post_audio():
     try:
-        max_size = current_app.config.get("AUDIO_MAX_SIZE_MB", 50)
+        max_size = current_app.config.get("AUDIO_MAX_SIZE_MB", 5)
 
         if "file" not in request.files:
             return jsonify({"error": "No se proporcionó ningún archivo"}), 400
